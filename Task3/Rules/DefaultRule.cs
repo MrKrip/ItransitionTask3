@@ -45,18 +45,5 @@ namespace Task3.Rules
                 }
             }
         }
-
-        public void PrintTable()
-        {
-            int n = (int)Math.Sqrt(RulesTable.Length);
-            for(int i=0;i<n;i++)
-            {
-                for(int j=0;j<n;j++)
-                {
-                    Console.Write($"\t{RulesTable[i,j]}");
-                }
-                Console.WriteLine();
-            }
-        }
     }
 }

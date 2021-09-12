@@ -7,9 +7,7 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            IRule test = new DefaultRule();
-            test.SetRules(args);
-            test.PrintTable();
+            
         }
     }
 }

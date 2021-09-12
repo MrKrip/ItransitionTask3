@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task3.Rules
+namespace Task3.GameKey
 {
-    interface IRule
+    interface IGameKey
     {
-        public int[,] RulesTable { get; }
-        public void SetRules(String[] args);
+        public string GenerateHMAC();
+        public string GenerateHMACKey();
     }
 }

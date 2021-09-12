@@ -8,7 +8,7 @@ namespace Task3.GameKey
 {
     interface IGameKey
     {
-        public string GenerateHMAC();
-        public string GenerateHMACKey();
+        public byte[] GenerateHMAC();
+        public byte[] GenerateHMACKey();
     }
 }

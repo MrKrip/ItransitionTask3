@@ -7,9 +7,8 @@ using Task3.Rules;
 
 namespace Task3.TableWriter
 {
-    abstract class ITableWriter
+    interface ITableWriter
     {
-        public ITableWriter(IRule GameRule) { }
-        public abstract void PrintTable();
+        public void PrintTable(IRule GameRule);
     }
 }

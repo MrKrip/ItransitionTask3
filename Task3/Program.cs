@@ -1,5 +1,7 @@
 ﻿using System;
+using Task3.GameKey;
 using Task3.Rules;
+using Task3.TableWriter;
 
 namespace Task3
 {
@@ -7,7 +9,8 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            
+            Game TestGame = new Game(new DefaultRule(),new DefaultGameKey(),new DefaultTableWriter());
+            TestGame.Start(args);
         }
     }
 }

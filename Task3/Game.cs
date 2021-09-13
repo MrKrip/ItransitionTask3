@@ -29,6 +29,11 @@ namespace Task3
         public void Start(string[] args)
         {
             SelectUniqueItems(args);
+            if(UniqueItems.Length<3)
+            {
+                Console.WriteLine("There must be at least 3 unique elements\nFor example : rock paper scissors");
+                return;
+            }
 
             GameRule.SetRules(UniqueItems);
 
@@ -53,7 +58,7 @@ namespace Task3
                 int n;
                 if(input=="?")
                 {
-                    tableWriter.PrintTable(GameRule);
+                    tableWriter.PrintTable(GameRule,UniqueItems);
                 }else if(Int32.TryParse(input,out n))
                 {
                     if (n<1||n> UniqueItems.Length)

@@ -9,6 +9,6 @@ namespace Task3.TableWriter
 {
     interface ITableWriter
     {
-        public void PrintTable(IRule GameRule);
+        public void PrintTable(IRule GameRule, string[] UniqueItems);
     }
 }

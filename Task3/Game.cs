@@ -17,6 +17,7 @@ namespace Task3
         private IGameKey GameKey;
         private ITableWriter tableWriter;
         private byte[] HMAC;
+        private byte[] HMACKey;
         private string[] UniqueItems;
         public Game(IRule Rule,IGameKey gameKey,ITableWriter tableWriter)
         {
@@ -27,18 +28,20 @@ namespace Task3
 
         public void Start(string[] args)
         {
-            string[] uniqueItems = args.Select(x=>x.ToLower()).Distinct<string>().ToArray();
-            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-            UniqueItems = uniqueItems.Select(x => textInfo.ToTitleCase(x)).ToArray();
+            SelectUniqueItems(args);
 
             GameRule.SetRules(UniqueItems);
 
             HMAC = GameKey.GenerateHMAC();
             string HMACString = BitConverter.ToString(HMAC).Replace("-", string.Empty);
+           
 
             string input = string.Empty;
             while(input!="0")
-            {
+             {  
+                int Computer = RandomNumberGenerator.GetInt32(0, UniqueItems.Length -1 );
+                HMACKey = GameKey.GenerateHMACKey(HMAC,Computer);
+                Console.WriteLine(new string('-', 80));
                 Console.WriteLine($"HMAC:\n{HMACString}");
                 for(int i=0;i< UniqueItems.Length; i++)
                 {
@@ -59,29 +62,28 @@ namespace Task3
                     }
                     else
                     {
-                        GameProgress(Int32.Parse(input)-1);
+                        GameProgress(Int32.Parse(input)-1,Computer);
                     }
-                }
-                Console.WriteLine(new string('-', 80));
+                }                
             }
         }
 
-        private void GameProgress(int Player)
-        {
-            Random rng = new Random();
-            int Computer = rng.Next(0,UniqueItems.Length-1);
+        private void GameProgress(int Player,int Computer)
+        {           
+            
             Console.WriteLine($"Your move: {UniqueItems[Player]}\nComputer move: {UniqueItems[Computer]}");
-            int Result = GameRule.RulesTable[Player, Computer];
-            if(Result==0)
-            {
-                Console.WriteLine("DRAW");
-            }else if(Result>0)
-            {
-                Console.WriteLine("You Win");
-            }else if(Result<0)
-            {
-                Console.WriteLine("You Lose");
-            }
+            string Result = GameRule.RulesTable[Player, Computer];
+            Console.WriteLine($"You {Result}");
+            Console.WriteLine($"HMAC key : {BitConverter.ToString(HMACKey).Replace("-", string.Empty)}");
         }
+
+        private void SelectUniqueItems(string[] args)
+        {
+            string[] uniqueItems = args.Select(x => x.ToLower()).Distinct<string>().ToArray();
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            UniqueItems = uniqueItems.Select(x => textInfo.ToTitleCase(x)).ToArray();
+        }
+
+
     }
 }

@@ -17,9 +17,13 @@ namespace Task3.GameKey
             return random;
         }
 
-        public byte[] GenerateHMACKey()
-        {
-            throw new NotImplementedException();
+        public byte[] GenerateHMACKey(byte[] HMAC, int key)
+        {            
+            using (var hmac = new HMACSHA256(HMAC))
+            {                
+                var bhash = hmac.ComputeHash(BitConverter.GetBytes(key));
+                return bhash;
+            }
         }
     }
 }

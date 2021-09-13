@@ -9,6 +9,6 @@ namespace Task3.GameKey
     interface IGameKey
     {
         public byte[] GenerateHMAC();
-        public byte[] GenerateHMACKey();
+        public byte[] GenerateHMACKey(byte[] HMAC,int key);
     }
 }

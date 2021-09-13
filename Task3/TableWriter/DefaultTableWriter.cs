@@ -10,7 +10,7 @@ namespace Task3.TableWriter
     class DefaultTableWriter : ITableWriter
     {
 
-        public void PrintTable(IRule GameRule)
+        public void PrintTable(IRule GameRule, string[] UniqueItems)
         {
             
         }

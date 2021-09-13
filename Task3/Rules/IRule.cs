@@ -8,7 +8,7 @@ namespace Task3.Rules
 {
     interface IRule
     {
-        public int[,] RulesTable { get; }
+        public string[,] RulesTable { get; }
         public void SetRules(String[] args);
     }
 }

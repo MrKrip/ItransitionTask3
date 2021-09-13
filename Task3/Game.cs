@@ -29,9 +29,9 @@ namespace Task3
         public void Start(string[] args)
         {
             SelectUniqueItems(args);
-            if(UniqueItems.Length<3)
+            if(UniqueItems.Length<3 || (UniqueItems.Length % 2) == 0)
             {
-                Console.WriteLine("There must be at least 3 unique elements\nFor example : rock paper scissors");
+                Console.WriteLine("There must be at least 3 unique items and the number of items must be odd.\nFor example : rock paper scissors");
                 return;
             }
 
